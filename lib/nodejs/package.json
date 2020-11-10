@@ -1,0 +1,11 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "Lib for crop-image service",
+  "dependencies": {
+    "busboy": "^0.3.1",
+    "sharp": "^0.25.2"
+  },
+  "author": "Baptiste Arnou <b.arnou05@gmail.com>",
+  "license": "ISC"
+}

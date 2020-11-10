@@ -94,6 +94,10 @@ custom:
     imageBucket:
       name: ${env:IMAGE_BUCKET_NAME, 'crop-image-sre-${self:custom.stage}'}
 
+  customDomain:
+    domainName: resize.aircall.com
+    stage: ${self:custom.stage}
+
 functions:
   crop:
     handler: src/app.lambdaHandler
@@ -113,3 +117,6 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.s3.imageBucket.name}
+
+plugins:
+  - serverless-domain-manager

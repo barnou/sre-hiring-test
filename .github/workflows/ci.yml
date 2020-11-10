@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy_crop_service:
+    name: Deploy crop service
+    runs-on: ubuntu-latest
+    container: lambci/lambda:build-nodejs12.x
+
+    steps:  
+    - uses: actions/checkout@v2
+    - run: npm ci
+    - run: npm --prefix lib/nodejs ci lib/nodejs
+    - run: npm run deploy
+      env:
+        STAGE: 'prod'
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

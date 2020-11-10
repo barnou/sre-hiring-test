@@ -86,7 +86,7 @@ layers:
     description: "aws-sdk, sharp and busboy node_modules"
 
 custom:
-  stage: ${opt:stage, self:provider.stage}
+  stage: ${opt:stage, env:STAGE, self:provider.stage}
   region: ${opt:region, self:provider.region}
   service_name: ${env:SERVICE_NAME, 'crop-image'}
 
